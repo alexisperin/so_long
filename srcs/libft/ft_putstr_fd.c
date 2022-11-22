@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/05 15:09:49 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 17:19:57 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+void	ft_putstr_fd(char *str, int fd)
+{
+	size_t	i;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	if (!str)
+		return ;
+	i = 0;
+	while (str[i])
+		i++;
+	write(fd, str, i);
+}

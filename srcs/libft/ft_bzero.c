@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/03 14:21:46 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 16:50:00 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+void	ft_bzero(void *s, size_t n)
+{
+	char	*ptr;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	ptr = s;
+	while (n)
+	{
+		ptr[n - 1] = 0;
+		n--;
+	}
+}

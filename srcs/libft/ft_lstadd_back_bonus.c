@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/05 16:46:09 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 18:12:50 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	if (lst)
+	{
+		tmp = ft_lstlast(*lst);
+		if (!tmp)
+			*lst = new;
+		else
+			tmp->next = new;
+	}
+}

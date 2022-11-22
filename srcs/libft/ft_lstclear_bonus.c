@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/05 17:06:47 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 18:13:11 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*curr;
+	t_list	*tmp;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	if (!lst || !del)
+		return ;
+	curr = *lst;
+	while (curr)
+	{
+		tmp = curr->next;
+		ft_lstdelone(curr, del);
+		curr = tmp;
+	}
+	*lst = 0;
+}

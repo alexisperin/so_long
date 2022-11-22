@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/06 16:07:16 by aperin            #+#    #+#             */
+/*   Updated: 2022/11/22 08:54:31 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-// Error
-int		print_error(char *str);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 16
+# endif
 
-// Input
-int		check_input(int ac, char **av);
+# include <unistd.h>
+# include <stdlib.h>
 
+char	*get_next_line(int fd);
+char	*gnl_free(char *str1, char *str2);
+int		found_nl(char *str);
+char	*strjoin_free(char *save, char *buf, size_t len);
 
 #endif

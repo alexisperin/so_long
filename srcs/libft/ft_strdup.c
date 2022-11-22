@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/04 16:00:11 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 17:25:33 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+char	*ft_strdup(const char *str)
+{
+	size_t	len;
+	char	*dup;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	len = ft_strlen(str);
+	dup = malloc((len + 1) * sizeof(char));
+	if (!dup)
+		return (0);
+	ft_strlcpy(dup, str, len + 1);
+	return (dup);
+}

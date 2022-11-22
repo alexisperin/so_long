@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/05 15:15:52 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 17:19:13 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+static void	ft_putnbr_recursive(long nbr, int fd)
+{
+	if (nbr > 9)
+		ft_putnbr_recursive(nbr / 10, fd);
+	ft_putchar_fd((nbr % 10) + 48, fd);
+}
 
-// Input
-int		check_input(int ac, char **av);
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	nbr;
 
-
-#endif
+	nbr = (long) n;
+	if (nbr < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nbr = -nbr;
+	}
+	ft_putnbr_recursive(nbr, fd);
+}

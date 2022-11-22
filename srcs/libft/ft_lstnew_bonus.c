@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/05 15:51:32 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/05 15:59:47 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*list;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	list = malloc(sizeof(t_list));
+	if (!list)
+		return (0);
+	list->content = content;
+	list->next = 0;
+	return (list);
+}

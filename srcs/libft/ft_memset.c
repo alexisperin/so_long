@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/03 13:45:00 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 17:12:57 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*ptr;
+	unsigned char	uc;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	ptr = s;
+	uc = c;
+	while (n)
+	{
+		ptr[n - 1] = uc;
+		n--;
+	}
+	return (ptr);
+}

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:11:10 by aperin           ###   ########.fr       */
+/*   Created: 2022/10/04 09:57:40 by aperin            #+#    #+#             */
+/*   Updated: 2022/10/22 17:53:07 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-// Error
-int		print_error(char *str);
+char	*ft_strrchr(const char *s, int c)
+{
+	size_t	i;
+	char	casted_c;
 
-// Input
-int		check_input(int ac, char **av);
-
-
-#endif
+	i = 0;
+	casted_c = c;
+	while (s[i])
+		i++;
+	while (i > 0 && s[i] != casted_c)
+		i--;
+	if (s[i] == casted_c)
+		return ((char *) s + i);
+	return (0);
+}
