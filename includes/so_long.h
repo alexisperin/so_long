@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 15:49:17 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/22 19:24:59 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		check_input(int ac, char **av);
 
 // Game
 t_game	*init_game(char *file_name);
+int		legal_map(t_game *game);
 
 
 

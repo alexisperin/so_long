@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:41:43 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 16:53:03 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/22 19:27:46 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_game	*init_game(char *file_name)
 	if (!game)
 		return (0);
 	init_map(fd, game);
+	if (!legal_map(game))
+		return (0);
 	game->nb_move = 0;
 	close(fd);
 	return (game);

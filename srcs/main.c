@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:54 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 17:15:10 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/22 18:50:10 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 void print_map(t_game *game)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (i < game->height)
 	{
 		ft_printf("%s\n", game->map[i]);

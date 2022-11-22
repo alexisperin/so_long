@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/22 17:04:54 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/22 19:24:39 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC_FILE	= main.c \
 				error/error.c \
 				input/input.c \
 				map/init_map.c \
+				map/legal_map.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c
 				
