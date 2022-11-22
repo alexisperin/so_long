@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/22 09:04:09 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/22 17:04:54 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ NAME		= so_long
 SRC_FILE	= main.c \
 				error/error.c \
 				input/input.c \
+				map/init_map.c \
 				get_next_line/get_next_line.c \
-				get_next_line/get_next_line_utils.c \
-				libft/ft_strlen.c
+				get_next_line/get_next_line_utils.c
 				
 SRCS_DIR	= srcs
 OBJSDIR		= objs
@@ -67,7 +67,7 @@ linux:		${OBJS}
 			# @make -C ${MLX_LINUX_DIR}
 			@make -C ${LIBFT_DIR}
 			@make -C ${FT_PRINTF_DIR}
-			${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${FT_PRINTF} -o ${NAME}
+			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} -o ${NAME}
 
 clean:
 			@make clean -C ${MLX_DIR}

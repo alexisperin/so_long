@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 17:44:35 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 11:58:17 by aperin           ###   ########.fr       */
+/*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
+/*   Updated: 2022/11/22 15:07:24 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft.h"
+#include "so_long.h"
 
-int	print_error(char *str, int call_perror)
+t_pos	get_player_pos(char **map)
 {
-	ft_putstr_fd("Error\n", 2);
-	if (call_perror)
-		perror(0);
-	else
-		ft_putstr_fd(str, 2);
-	return (0);
 }
