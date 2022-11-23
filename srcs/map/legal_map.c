@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:51:12 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 21:10:35 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/23 08:40:05 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	rectangular_map(t_game *game)
 	int	y;
 
 	y = 1;
+	if (!game->map)
+		return (0);
 	game->width = ft_strlen(game->map[0]);
 	while (y < game->height)
 	{
@@ -28,7 +30,29 @@ static int	rectangular_map(t_game *game)
 	return (1);
 }
 
-static int	only_one(t_game *game, char item)
+static int	unknown_items(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->height)
+	{
+		x = 0;
+		while (x < game->width)
+		{
+			if (game->map[y][x] != '1' && game->map[y][x] != '0'
+				&& game->map[y][x] != 'P' && game->map[y][x] != 'E'
+				&& game->map[y][x] != 'C')
+				return (1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+static int	nb_items(t_game *game, char item)
 {
 	int	x;
 	int	y;
@@ -47,29 +71,7 @@ static int	only_one(t_game *game, char item)
 		}
 		y++;
 	}
-	if (count != 1)
-		return (0);
-	return (1);
-}
-
-static int	at_least_one(t_game *game, char item)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < game->height)
-	{
-		x = 0;
-		while (x < game->width)
-		{
-			if (game->map[y][x] == item)
-				return (1);
-			x++;
-		}
-		y++;
-	}
-	return (0);
+	return (count);
 }
 
 static int	map_closed(t_game *game)
@@ -97,13 +99,13 @@ int	legal_map(t_game *game)
 {
 	if (!rectangular_map(game))
 		print_error("Map is not rectangular\n", 0);
-	else if (contains_unknown_item(game))
+	else if (unknown_items(game))
 		print_error("Map contains unknown items\n", 0);
-	else if (!only_one(game, 'P'))
+	else if (nb_items(game, 'P') != 1)
 		print_error("Map does not have exactly one starting position\n", 0);
-	else if (!only_one(game, 'E'))
+	else if (nb_items(game, 'E') != 1)
 		print_error("Map does not have exactly one exit\n", 0);
-	else if (!at_least_one(game, 'C'))
+	else if (nb_items(game, 'C') < 1)
 		print_error("Map does not have at least one collectible\n", 0);
 	else if (!map_closed(game))
 		print_error("Map is not close/surrounded by walls\n", 0);

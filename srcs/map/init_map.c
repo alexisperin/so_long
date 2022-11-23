@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:41:43 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 19:27:46 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/23 09:03:38 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 #include "so_long.h"
 #include "get_next_line.h"
 #include "libft.h"
+
+t_game	*free_game(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->height)
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	free(game);
+	return (0);
+}
 
 static void	init_map(int fd, t_game *game)
 {
@@ -54,7 +69,7 @@ t_game	*init_game(char *file_name)
 		return (0);
 	init_map(fd, game);
 	if (!legal_map(game))
-		return (0);
+		return (free_game(game));
 	game->nb_move = 0;
 	close(fd);
 	return (game);
