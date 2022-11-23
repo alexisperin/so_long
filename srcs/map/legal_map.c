@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:51:12 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/23 08:40:05 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/23 15:18:37 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,21 @@ static int	map_closed(t_game *game)
 int	legal_map(t_game *game)
 {
 	if (!rectangular_map(game))
-		print_error("Map is not rectangular\n", 0);
+		return(print_error("Map is not rectangular\n", 0));
 	else if (unknown_items(game))
-		print_error("Map contains unknown items\n", 0);
+		return(print_error("Map contains unknown items\n", 0));
 	else if (nb_items(game, 'P') != 1)
-		print_error("Map does not have exactly one starting position\n", 0);
+		return(print_error("Map does not have exactly one starting position\n", 0));
 	else if (nb_items(game, 'E') != 1)
-		print_error("Map does not have exactly one exit\n", 0);
+		return(print_error("Map does not have exactly one exit\n", 0));
 	else if (nb_items(game, 'C') < 1)
-		print_error("Map does not have at least one collectible\n", 0);
+		return(print_error("Map does not have at least one collectible\n", 0));
 	else if (!map_closed(game))
-		print_error("Map is not close/surrounded by walls\n", 0);
-	// else if (!valid_path(game))
-	// 	print_error("No valid path in map\n", 0);
+		return(print_error("Map is not close/surrounded by walls\n", 0));
+	set_player(game);
+	set_food_left(game);
+	if (!check_path(game))
+		return(0);
 	else
 		return (1);
-	return (0);
 }

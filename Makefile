@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/23 09:00:13 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/23 14:38:13 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC_FILE	= main.c \
 				input/input.c \
 				map/init_map.c \
 				map/legal_map.c \
+				map/path.c \
+				map/map_utils.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c
 				
@@ -30,6 +32,7 @@ OBJS_DIR	= $(sort $(dir $(OBJS)))
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
+LEAKS		= -fsanitize=address -g
 INCS		= $(foreach d, $(INCDIR), -I$d)
 
 # libft
@@ -59,10 +62,10 @@ ${OBJSDIR}/%.o: ${SRCS_DIR}/%.c
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			@make -C ${MLX_DIR}
+			# @make -C ${MLX_DIR}
 			@make -C ${LIBFT_DIR}
 			@make -C ${FT_PRINTF_DIR}
-			${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${FT_PRINTF} ${MLX} -o ${NAME}
+			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} -o ${NAME}
 
 linux:		${OBJS}
 			# @make -C ${MLX_LINUX_DIR}

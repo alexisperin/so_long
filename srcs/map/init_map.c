@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:41:43 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/23 09:03:38 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/23 10:55:19 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	init_map(int fd, t_game *game)
 		tmp = buf;
 		buf = ft_strjoin(buf, line);
 		free(tmp);
+		free(line);
 		(game->height)++;
 	}
 	game->map = ft_split(buf, '\n');

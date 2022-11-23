@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:54 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/22 18:50:10 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/23 15:41:11 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int	main(int ac, char **av)
 	if (!game)
 		exit(EXIT_FAILURE);
 	print_map(game);
+	ft_printf("%s", get_legal_moves(game));
+	free_game(game);
 	exit(EXIT_SUCCESS);
 }
