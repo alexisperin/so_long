@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/23 17:53:39 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 09:06:42 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	legal_move(t_game *game, char move)
 	return (1);
 }
 
-char	*get_legal_moves(t_game *game)
+void	set_legal_moves(t_game *game)
 {
 	char	moves;
 	int		i;
@@ -83,14 +83,21 @@ char	*get_legal_moves(t_game *game)
 	i = 0;
 	x = game->player.x;
 	y = game->player.y;
+	game->moves.up = 0;
+	game->moves.down = 0;
+	game->moves.left = 0;
+	game->moves.right = 0;
 	if (game->map[y - 1][x] != '1')
-		moves[i++] = 'u';
+		game->moves.up = 1;
 	if (game->map[y + 1][x] != '1')
-		moves[i++] = 'd';
+		game->moves.down = 1;
 	if (game->map[y][x - 1] != '1')
-		moves[i++] = 'l';
+		game->moves.left = 1;
 	if (game->map[y][x + 1] != '1')
-		moves[i++] = 'r';
-	moves[i] = 0;
-	return(moves);
+		game->moves.right = 1;
+}
+
+int	equal_pos(t_pos pos1, t_pos pos2)
+{
+	return (pos1.x == pos2.x && pos1.y == pos2.y);
 }

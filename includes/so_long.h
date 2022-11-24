@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/23 18:10:50 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 09:07:51 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,30 @@ typedef struct s_pos
 	int	y;
 }		t_pos;
 
+typedef struct s_moves
+{
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+}		t_moves;
+
 typedef struct s_game
 {
 	char	**map;
 	int		height;
 	int		width;
 	t_pos	player;
+	t_moves	moves;
 	int		food_left;
 	int		nb_move;
-	char	
 }			t_game;
 
+typedef struct s_path
+{
+	t_pos			pos;
+	struct s_path	*next;
+}					t_path;
 
 // Error
 int		print_error(char *str, int call_perror);
@@ -50,7 +63,8 @@ int		check_path(t_game *game);
 // Map utils
 void	set_player(t_game *game);
 void	set_food_left(t_game *game);
-int		legal_move(t_game *game, char move);
-char	*get_legal_moves(t_game *game);
+int		legal_move(t_game *game, char move); // Not needed ???
+void	set_legal_moves(t_game *game);
+int		equal_pos(t_pos pos1, t_pos pos2);
 
 #endif

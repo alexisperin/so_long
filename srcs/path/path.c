@@ -6,16 +6,21 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/23 14:36:30 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 09:12:22 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	valid_path(t_game *game, t_pos pos)
+static int	valid_path(t_game *game, t_pos player, t_pos dest)
 {
-	(void) game;
-	(void) pos;
+	t_path	*allowed;
+	t_path	*visited;
+	t_moves	moves;
+
+	if (equal_pos(player, dest))
+		return (1);
+	add_pos_to_path(visited, player);
 	return (1);
 }
 
