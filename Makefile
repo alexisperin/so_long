@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/23 14:38:13 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/24 09:41:50 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,6 @@ FT_PRINTF		= ${FT_PRINTF_DIR}/libftprintf.a
 MLX_DIR		= srcs/mlx
 MLX_PATH	= ${MLX_DIR}/libmlx.a
 MLX			= -framework OpenGL -framework AppKit ${MLX_PATH}
-
-# Minilibx linux
-# MLX_LINUX_DIR	= srcs/mlx_linux
-# MLX_LINUX_PATH	= ${MLX_LINUX_DIR}/libmlx.a
-# MLX_LINUX		= -lmlx -lXext -lX11 ${MLX_LINUX_PATH}
-
 
 # Rules
 ${OBJSDIR}/%.o: ${SRCS_DIR}/%.c

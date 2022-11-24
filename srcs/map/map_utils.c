@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 09:06:42 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 11:01:18 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,28 +73,20 @@ int	legal_move(t_game *game, char move)
 	return (1);
 }
 
-void	set_legal_moves(t_game *game)
+void	set_legal_moves(char **map, t_pos player, t_moves *moves)
 {
-	char	moves;
-	int		i;
-	int		x;
-	int		y;
-
-	i = 0;
-	x = game->player.x;
-	y = game->player.y;
-	game->moves.up = 0;
-	game->moves.down = 0;
-	game->moves.left = 0;
-	game->moves.right = 0;
-	if (game->map[y - 1][x] != '1')
-		game->moves.up = 1;
-	if (game->map[y + 1][x] != '1')
-		game->moves.down = 1;
-	if (game->map[y][x - 1] != '1')
-		game->moves.left = 1;
-	if (game->map[y][x + 1] != '1')
-		game->moves.right = 1;
+	moves->up = 0;
+	moves->down = 0;
+	moves->left = 0;
+	moves->right = 0;
+	if (map[player.y - 1][player.x] != '1')
+		moves->up = 1;
+	if (map[player.y + 1][player.x] != '1')
+		moves->down = 1;
+	if (map[player.y][player.x - 1] != '1')
+		moves->left = 1;
+	if (map[player.y][player.x + 1] != '1')
+		moves->right = 1;
 }
 
 int	equal_pos(t_pos pos1, t_pos pos2)

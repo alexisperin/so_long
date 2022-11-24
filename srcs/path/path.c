@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 09:12:22 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 11:18:34 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	valid_path(t_game *game, t_pos player, t_pos dest)
 	if (equal_pos(player, dest))
 		return (1);
 	add_pos_to_path(visited, player);
-	return (1);
+	set_legal_moves(game->map, player, &moves);
+	
 }
 
 int	check_path(t_game *game)
