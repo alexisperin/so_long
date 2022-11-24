@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/24 11:42:29 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/24 19:32:00 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC_FILE	= main.c \
 				map/init_map.c \
 				map/legal_map.c \
 				map/map_utils.c \
-				path/path.c
+				path/path.c \
+				path/path_utils.c
 				
 SRCS_DIR	= srcs
 OBJSDIR		= objs

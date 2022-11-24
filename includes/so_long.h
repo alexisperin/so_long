@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 11:38:17 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 19:29:10 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,13 @@ int		check_path(t_game *game);
 // Map utils
 void	set_player(t_game *game);
 void	set_food_left(t_game *game);
-int		legal_move(t_game *game, char move); // Not needed ???
 void	set_legal_moves(char **map, t_pos player, int moves[4]);
 int		equal_pos(t_pos pos1, t_pos pos2);
+t_pos	make_move(t_pos curr_pos, int move);
+
+// Path utils
+t_path	*add_to_path(t_path *path, t_pos pos);
+int		in_path(t_path *path, t_pos pos);
+t_path	*free_path(t_path *path);
 
 #endif

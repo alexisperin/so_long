@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 11:40:34 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 19:26:54 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,6 @@ void	set_food_left(t_game *game)
 	}
 }
 
-int	legal_move(t_game *game, char move)
-{
-	int	x;
-	int	y;
-
-	x = game->player.x;
-	y = game->player.y;
-	if (move == 'u' && game->map[y - 1][x] == '1')
-		return (0);
-	else if (move == 'd' && game->map[y + 1][x] == '1')
-		return (0);
-	else if (move == 'l' && game->map[y][x - 1] == '1')
-		return (0);
-	else if (move == 'r' && game->map[y][x + 1] == '1')
-		return (0);
-	return (1);
-}
-
 void	set_legal_moves(char **map, t_pos player, int moves[4])
 {
 	moves[0] = 0;
@@ -92,4 +74,20 @@ void	set_legal_moves(char **map, t_pos player, int moves[4])
 int	equal_pos(t_pos pos1, t_pos pos2)
 {
 	return (pos1.x == pos2.x && pos1.y == pos2.y);
+}
+
+t_pos	make_move(t_pos curr_pos, int move)
+{
+	t_pos	new_pos;
+
+	new_pos = curr_pos;
+	if (move == 0)
+		new_pos.y -= 1;
+	else if (move == 1)
+		new_pos.y += 1;
+	else if (move == 2)
+		new_pos.x -= 1;
+	else if (move == 3)
+		new_pos.x += 1;
+	return (new_pos);
 }

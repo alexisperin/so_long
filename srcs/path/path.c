@@ -6,11 +6,58 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 15:20:57 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 19:57:52 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static t_path	*push_path(t_path *allowed, t_path *visited)
+{
+	t_path	*tmp;
+
+	if (!visited)
+	{
+		visited = allowed;
+		allowed = allowed->next;
+		visited->next = 0;
+		return (allowed);
+	}
+	tmp = visited;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = allowed;
+	allowed = allowed->next;
+	return (allowed);
+}
+
+static t_path *dfs_algo(char **map, t_path *allowed, t_path *visited)
+{
+	int		moves[4];
+	int		i;
+	t_pos	new_pos;
+
+	set_legal_moves(map, allowed->pos, moves);
+	i = 0;
+	while (i < 4)
+	{
+		if (moves[i])
+		{
+			new_pos = make_move(allowed->pos, i);
+			allowed = push_path(allowed, visited);
+			if (!in_path(visited, new_pos))
+			{
+				allowed = add_to_path(allowed, new_pos);
+				if (!allowed)
+					return (free_path(visited));
+			}
+		}
+		i++;
+	}
+	printf("!!!!!!!!!!!!!\n");
+	exit (1);
+	return (allowed);
+}
 
 static int	valid_path(t_game *game, t_pos dest)
 {
@@ -24,11 +71,16 @@ static int	valid_path(t_game *game, t_pos dest)
 		return (0);
 	while (allowed)
 	{
-		set_legal_moves(game->map, curr_pos, moves);
-		
+		if (equal_pos(allowed->pos, dest))
+		{
+			free_path(allowed);
+			free_path(visited);
+			return (1);
+		}
+		allowed = dfs_algo(game->map, allowed, visited);
 	}
-	
-	return (1);
+	free_path(visited);
+	return (0);
 }
 
 int	check_path(t_game *game)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_lst_utils.c                                   :+:      :+:    :+:   */
+/*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:06:47 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 14:38:54 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 19:31:46 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,26 @@ t_path	*add_to_path(t_path *path, t_pos pos)
 	return (new_node);
 }
 
-t_path	*add_moves_to_path(t_path *allowed, t_path *visited, char **map,
-							t_pos curr_pos)
+int	in_path(t_path *path, t_pos pos)
 {
-	t_pos	next_pos;
-	int		moves[4];
+	while (path)
+	{
+		if (equal_pos(path->pos, pos))
+			return (1);
+		path = path->next;
+	}
+	return (0);
+}
 
-	set_legal_moves(map, curr_pos, moves);
-	if (move[0])
-		
+t_path	*free_path(t_path *path)
+{
+	t_path	*tmp;
+
+	while (path)
+	{
+		tmp = path;
+		path = path->next;
+		free(tmp);
+	}
+	return (0);
 }
