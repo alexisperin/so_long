@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 11:01:18 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 11:40:34 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,20 @@ int	legal_move(t_game *game, char move)
 	return (1);
 }
 
-void	set_legal_moves(char **map, t_pos player, t_moves *moves)
+void	set_legal_moves(char **map, t_pos player, int moves[4])
 {
-	moves->up = 0;
-	moves->down = 0;
-	moves->left = 0;
-	moves->right = 0;
+	moves[0] = 0;
+	moves[1] = 0;
+	moves[2] = 0;
+	moves[3] = 0;
 	if (map[player.y - 1][player.x] != '1')
-		moves->up = 1;
+		moves[0] = 1;
 	if (map[player.y + 1][player.x] != '1')
-		moves->down = 1;
+		moves[1] = 1;
 	if (map[player.y][player.x - 1] != '1')
-		moves->left = 1;
+		moves[2] = 1;
 	if (map[player.y][player.x + 1] != '1')
-		moves->right = 1;
+		moves[3] = 1;
 }
 
 int	equal_pos(t_pos pos1, t_pos pos2)
