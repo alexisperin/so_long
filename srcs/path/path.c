@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 11:58:02 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 15:20:57 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 static int	valid_path(t_game *game, t_pos dest)
 {
-	// t_path	*allowed;
-	// t_path	*visited;
-	int		moves[4];
+	t_path	*allowed;
+	t_path	*visited;
 
-	if (equal_pos(game->player, dest))
-		return (1);
-	// add_pos_to_path(visited, player);
-	set_legal_moves(game->map, game->player, moves);
-	printf("%d %d %d %d\n", moves[0], moves[1], moves[2], moves[3]);
+	allowed = 0;
+	visited = 0;
+	allowed = add_to_path(allowed, game->player);
+	if (!allowed)
+		return (0);
+	while (allowed)
+	{
+		set_legal_moves(game->map, curr_pos, moves);
+		
+	}
+	
 	return (1);
 }
 
