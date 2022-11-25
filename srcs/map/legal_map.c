@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:51:12 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 11:37:35 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/25 09:47:04 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	legal_map(t_game *game)
 		return(print_error("Map is not close/surrounded by walls\n", 0));
 	set_player(game);
 	set_food_left(game);
-	set_legal_moves(game->map, game->player, game->moves);
 	if (!check_path(game))
 		return(0);
 	else

@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 19:26:54 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/25 09:47:52 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	set_food_left(t_game *game)
 	}
 }
 
-void	set_legal_moves(char **map, t_pos player, int moves[4])
+void	get_legal_moves(char **map, t_pos player, int moves[4])
 {
 	moves[0] = 0;
 	moves[1] = 0;

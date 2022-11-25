@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/25 09:10:48 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/25 09:47:38 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_path *bfs_algo(char **map, t_path *allowed, t_path *visited)
 
 	curr_pos = allowed->pos;
 	allowed = push_path(allowed, visited);
-	set_legal_moves(map, curr_pos, moves);
+	get_legal_moves(map, curr_pos, moves);
 	i = 0;
 	while (i < 4)
 	{
