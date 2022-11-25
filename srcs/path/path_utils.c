@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:06:47 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 19:31:46 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/25 09:10:15 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ int	in_path(t_path *path, t_pos pos)
 		path = path->next;
 	}
 	return (0);
+}
+
+t_path	*push_path(t_path *allowed, t_path *visited)
+{
+	t_path	*tmp;
+
+	if (!visited)
+	{
+		visited = allowed;
+		allowed = allowed->next;
+		visited->next = 0;
+		return (allowed);
+	}
+	tmp = visited;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = allowed;
+	allowed = allowed->next;
+	tmp->next->next = 0;
+	return (allowed);
 }
 
 t_path	*free_path(t_path *path)

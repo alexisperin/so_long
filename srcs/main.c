@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:54 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 11:56:43 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/24 21:01:22 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ void print_map(t_game *game)
 	{
 		ft_printf("%s\n", game->map[i]);
 		i++;
+	}
+}
+
+void print_path(t_path *path)
+{
+	while (path)
+	{
+		printf("cell: %d %d\n", path->pos.x, path->pos.y);
+		path = path->next;
 	}
 }
 
