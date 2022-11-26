@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:26:37 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/26 12:51:40 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:31:52 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	play_game(t_game *game)
 	if (!mlx.window)
 		return ;
 	mlx.game = game;
+	mlx.img.img = mlx_xpm_file_to_image(mlx.mlx, "sprites/monster.xpm", &mlx.img.width, &mlx.img.height);
 	mlx_hook(mlx.window, 17, 0, close_window, &mlx);
 	mlx_loop(mlx.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/26 12:46:08 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:26:45 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,18 @@ typedef struct s_path
 	struct s_path	*next;
 }					t_path;
 
+typedef struct s_img
+{
+	void	*img;
+	int		width;
+	int		height;
+}			t_img;
+
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*window;
+	t_img	img;
 	t_game	*game;
 }			t_mlx;
 
