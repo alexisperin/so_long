@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:54 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/25 09:40:30 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/26 12:29:00 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int ac, char **av)
 	if (!game)
 		exit(EXIT_FAILURE);
 	print_map(game);
+	play_game(game);
 	free_game(game);
 	exit(EXIT_SUCCESS);
 }

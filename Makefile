@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/24 19:32:00 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/26 12:35:12 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC_FILE	= main.c \
 				map/legal_map.c \
 				map/map_utils.c \
 				path/path.c \
-				path/path_utils.c
+				path/path_utils.c \
+				game/game.c
 				
 SRCS_DIR	= srcs
 OBJSDIR		= objs
@@ -32,7 +33,7 @@ OBJS		= $(addprefix ${OBJSDIR}/, $(addsuffix .o, $(basename ${SRC_FILE})))
 OBJS_DIR	= $(sort $(dir $(OBJS)))
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 LEAKS		= -fsanitize=address -g
 INCS		= $(foreach d, $(INCDIR), -I$d)
 
@@ -57,10 +58,10 @@ ${OBJSDIR}/%.o: ${SRCS_DIR}/%.c
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			# @make -C ${MLX_DIR}
+			@make -C ${MLX_DIR}
 			@make -C ${LIBFT_DIR}
 			@make -C ${FT_PRINTF_DIR}
-			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} -o ${NAME}
+			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} ${MLX} -o ${NAME}
 
 linux:		${OBJS}
 			# @make -C ${MLX_LINUX_DIR}

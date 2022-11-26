@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/25 09:46:56 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/26 12:46:08 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ typedef struct s_path
 	struct s_path	*next;
 }					t_path;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*window;
+	t_game	*game;
+}			t_mlx;
+
 void print_path(t_path *path); // TO REMOVE !!!
 
 // Error
@@ -65,5 +72,8 @@ t_path	*add_to_path(t_path *path, t_pos pos);
 int		in_path(t_path *path, t_pos pos);
 t_path	*push_path(t_path *allowed, t_path *visited);
 t_path	*free_path(t_path *path);
+
+// Game
+void	play_game(t_game *game);
 
 #endif
