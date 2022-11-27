@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/26 12:35:12 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/27 16:06:49 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_FILE	= main.c \
 				map/map_utils.c \
 				path/path.c \
 				path/path_utils.c \
-				game/game.c
+				game/game.c \
+				game/game_hooks.c
 				
 SRCS_DIR	= srcs
 OBJSDIR		= objs

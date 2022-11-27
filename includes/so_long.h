@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/26 14:26:45 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 15:30:54 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,37 @@
 
 # include <stdio.h> // TO REMOVE !!!
 
-typedef struct s_pos
+typedef struct s_vector
 {
 	int	x;
 	int	y;
-}		t_pos;
+}		t_vector;
 
 typedef struct s_game
 {
-	char	**map;
-	int		height;
-	int		width;
-	t_pos	player;
-	int		food_left;
-	int		score;
-}			t_game;
+	char		**map;
+	t_vector	size;
+	t_vector	player;
+	int			food_left;
+	int			score;
+}				t_game;
 
 typedef struct s_path
 {
-	t_pos			pos;
+	t_vector		pos;
 	struct s_path	*next;
 }					t_path;
 
 typedef struct s_img
 {
-	void	*img;
-	int		width;
-	int		height;
-}			t_img;
+	void		*img;
+	t_vector	size;
+	t_vector	pos;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_img;
 
 typedef struct s_mlx
 {
@@ -57,31 +60,35 @@ typedef struct s_mlx
 void print_path(t_path *path); // TO REMOVE !!!
 
 // Error
-int		print_error(char *str, int call_perror);
+int			print_error(char *str, int call_perror);
 
 // Input
-int		check_input(int ac, char **av);
+int			check_input(int ac, char **av);
 
 // Map
-t_game	*init_game(char *file_name);
-t_game	*free_game(t_game *game);
-int		legal_map(t_game *game);
-int		check_path(t_game *game);
+t_game		*init_game(char *file_name);
+t_game		*free_game(t_game *game);
+int			legal_map(t_game *game);
+int			check_path(t_game *game);
 
 // Map utils
-void	set_player(t_game *game);
-void	set_food_left(t_game *game);
-void	get_legal_moves(char **map, t_pos player, int moves[4]);
-int		equal_pos(t_pos pos1, t_pos pos2);
-t_pos	make_move(t_pos curr_pos, int move);
+void		set_player(t_game *game);
+void		set_food_left(t_game *game);
+void		get_legal_moves(char **map, t_vector player, int moves[4]);
+int			equal_pos(t_vector pos1, t_vector pos2);
+t_vector	make_move(t_vector curr_pos, int move);
 
 // Path utils
-t_path	*add_to_path(t_path *path, t_pos pos);
-int		in_path(t_path *path, t_pos pos);
-t_path	*push_path(t_path *allowed, t_path *visited);
-t_path	*free_path(t_path *path);
+t_path		*add_to_path(t_path *path, t_vector pos);
+int			in_path(t_path *path, t_vector pos);
+t_path		*push_path(t_path *allowed, t_path *visited);
+t_path		*free_path(t_path *path);
 
 // Game
-void	play_game(t_game *game);
+void		play_game(t_game *game);
+
+// Hooks
+int			close_window(t_mlx *mlx);
+int			key_pressed(int key, t_mlx *mlx);
 
 #endif

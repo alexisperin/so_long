@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/25 09:47:52 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 13:18:12 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	set_player(t_game *game)
 	int	y;
 
 	y = 0;
-	while (y < game->height)
+	while (y < game->size.y)
 	{
 		x = 0;
-		while (x < game->width)
+		while (x < game->size.x)
 		{
 			if (game->map[y][x] == 'P')
 			{
@@ -42,10 +42,10 @@ void	set_food_left(t_game *game)
 
 	game->food_left = 0;
 	y = 0;
-	while (y < game->height)
+	while (y < game->size.y)
 	{
 		x = 0;
-		while (x < game->width)
+		while (x < game->size.x)
 		{
 			if (game->map[y][x] == 'C')
 				(game->food_left)++;
@@ -55,7 +55,7 @@ void	set_food_left(t_game *game)
 	}
 }
 
-void	get_legal_moves(char **map, t_pos player, int moves[4])
+void	get_legal_moves(char **map, t_vector player, int moves[4])
 {
 	moves[0] = 0;
 	moves[1] = 0;
@@ -71,14 +71,14 @@ void	get_legal_moves(char **map, t_pos player, int moves[4])
 		moves[3] = 1;
 }
 
-int	equal_pos(t_pos pos1, t_pos pos2)
+int	equal_pos(t_vector pos1, t_vector pos2)
 {
 	return (pos1.x == pos2.x && pos1.y == pos2.y);
 }
 
-t_pos	make_move(t_pos curr_pos, int move)
+t_vector	make_move(t_vector curr_pos, int move)
 {
-	t_pos	new_pos;
+	t_vector	new_pos;
 
 	new_pos = curr_pos;
 	if (move == 0)

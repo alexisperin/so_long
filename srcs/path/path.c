@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/25 09:47:38 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 13:17:22 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static t_path *bfs_algo(char **map, t_path *allowed, t_path *visited)
 {
 	int		moves[4];
 	int		i;
-	t_pos	curr_pos;
-	t_pos	new_pos;
+	t_vector	curr_pos;
+	t_vector	new_pos;
 
 	curr_pos = allowed->pos;
 	allowed = push_path(allowed, visited);
@@ -40,7 +40,7 @@ static t_path *bfs_algo(char **map, t_path *allowed, t_path *visited)
 	return (allowed);
 }
 
-static int	valid_path(t_game *game, t_pos dest)
+static int	valid_path(t_game *game, t_vector dest)
 {
 	t_path	*allowed;
 	t_path	*visited;
@@ -70,13 +70,13 @@ static int	valid_path(t_game *game, t_pos dest)
 
 int	check_path(t_game *game)
 {
-	t_pos	pos;
+	t_vector	pos;
 
 	pos.y = 0;
-	while (pos.y < game->height)
+	while (pos.y < game->size.y)
 	{
 		pos.x = 0;
-		while (pos.x < game->width)
+		while (pos.x < game->size.x)
 		{
 			if (game->map[pos.y][pos.x] == 'E' && !valid_path(game, pos))
 			{

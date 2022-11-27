@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:41:43 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/24 11:38:24 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 13:11:20 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_game	*free_game(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->height)
+	while (i < game->size.y)
 	{
 		free(game->map[i]);
 		i++;
@@ -37,7 +37,7 @@ static void	init_map(int fd, t_game *game)
 	char	*buf;
 	char	*tmp;
 
-	game->height = 0;
+	game->size.y = 0;
 	buf = 0;
 	while (1)
 	{
@@ -48,7 +48,7 @@ static void	init_map(int fd, t_game *game)
 		buf = ft_strjoin(buf, line);
 		free(tmp);
 		free(line);
-		(game->height)++;
+		(game->size.y)++;
 	}
 	game->map = ft_split(buf, '\n');
 	free(buf);

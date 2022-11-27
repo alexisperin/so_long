@@ -6,13 +6,13 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:06:47 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/25 09:10:15 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 13:16:55 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_path	*add_to_path(t_path *path, t_pos pos)
+t_path	*add_to_path(t_path *path, t_vector pos)
 {
 	t_path	*new_node;
 
@@ -25,7 +25,7 @@ t_path	*add_to_path(t_path *path, t_pos pos)
 	return (new_node);
 }
 
-int	in_path(t_path *path, t_pos pos)
+int	in_path(t_path *path, t_vector pos)
 {
 	while (path)
 	{

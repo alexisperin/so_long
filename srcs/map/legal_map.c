@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:51:12 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/25 09:47:04 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 13:12:13 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	rectangular_map(t_game *game)
 	y = 1;
 	if (!game->map)
 		return (0);
-	game->width = ft_strlen(game->map[0]);
-	while (y < game->height)
+	game->size.x = ft_strlen(game->map[0]);
+	while (y < game->size.y)
 	{
-		if ((int) ft_strlen(game->map[y]) != game->width)
+		if ((int) ft_strlen(game->map[y]) != game->size.x)
 			return (0);
 		y++;
 	}
@@ -36,10 +36,10 @@ static int	unknown_items(t_game *game)
 	int	y;
 
 	y = 0;
-	while (y < game->height)
+	while (y < game->size.y)
 	{
 		x = 0;
-		while (x < game->width)
+		while (x < game->size.x)
 		{
 			if (game->map[y][x] != '1' && game->map[y][x] != '0'
 				&& game->map[y][x] != 'P' && game->map[y][x] != 'E'
@@ -60,10 +60,10 @@ static int	nb_items(t_game *game, char item)
 
 	y = 0;
 	count = 0;
-	while (y < game->height)
+	while (y < game->size.y)
 	{
 		x = 0;
-		while (x < game->width)
+		while (x < game->size.x)
 		{
 			if (game->map[y][x] == item)
 				count++;
@@ -79,16 +79,16 @@ static int	map_closed(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->width)
+	while (i < game->size.x)
 	{
-		if (game->map[0][i] != '1' || game->map[game->height - 1][i] != '1')
+		if (game->map[0][i] != '1' || game->map[game->size.y - 1][i] != '1')
 			return (0);
 		i++;
 	}
 	i = 1;
-	while (i < game->height - 1)
+	while (i < game->size.y - 1)
 	{
-		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
+		if (game->map[i][0] != '1' || game->map[i][game->size.x - 1] != '1')
 			return (0);
 		i++;
 	}

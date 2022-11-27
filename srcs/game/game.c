@@ -6,18 +6,21 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:26:37 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/26 14:31:52 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 16:07:01 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
 
-int	close_window(t_mlx *mlx)
+t_img	new_sprite(void *mlx, char	*file_path)
 {
-	free_game(mlx->game);
-	mlx_destroy_window(mlx->mlx, mlx->window);
-	exit(EXIT_SUCCESS);
+	t_img	img;
+
+	img.img = mlx_xpm_file_to_image(mlx, file_path, &img.size.x, &img.size.y);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+									&img.line_length, &img.endian);
+	return (img);
 }
 
 void	play_game(t_game *game)
@@ -27,11 +30,17 @@ void	play_game(t_game *game)
 	mlx.mlx = mlx_init();
 	if (!mlx.mlx)
 		return ;
-	mlx.window = mlx_new_window(mlx.mlx, 50 * game->width, 50 * game->height, "so_long");
+	mlx.window = mlx_new_window(mlx.mlx, 50 * game->size.x,
+								50 * game->size.y, "so_long");
 	if (!mlx.window)
 		return ;
 	mlx.game = game;
-	mlx.img.img = mlx_xpm_file_to_image(mlx.mlx, "sprites/monster.xpm", &mlx.img.width, &mlx.img.height);
+	mlx.img = new_sprite(mlx.mlx, "sprites/monster.xpm");
+	mlx.img.pos.x = 50;
+	mlx.img.pos.y = 0;
+	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img, mlx.img.pos.x,
+							mlx.img.pos.y);
 	mlx_hook(mlx.window, 17, 0, close_window, &mlx);
+	mlx_key_hook (mlx.window, key_pressed, &mlx);
 	mlx_loop(mlx.mlx);
 }
