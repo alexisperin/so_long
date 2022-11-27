@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:26:37 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 16:07:01 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 17:42:06 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,17 @@ void	play_game(t_game *game)
 		return ;
 	mlx.game = game;
 	mlx.img = new_sprite(mlx.mlx, "sprites/monster.xpm");
-	mlx.img.pos.x = 50;
+	mlx.img.pos.x = 0;
 	mlx.img.pos.y = 0;
+	mlx.wall = new_sprite(mlx.mlx, "sprites/rock.xpm");
+	mlx.wall.pos.x = 0;
+	mlx.wall.pos.y = 0;
 	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img, mlx.img.pos.x,
 							mlx.img.pos.y);
+	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.wall.img, mlx.wall.pos.x,
+							mlx.wall.pos.y);
 	mlx_hook(mlx.window, 17, 0, close_window, &mlx);
 	mlx_key_hook (mlx.window, key_pressed, &mlx);
+	// mlx_loop_hook(mlx.mlx, sprite_animation, &mlx);
 	mlx_loop(mlx.mlx);
 }

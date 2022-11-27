@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:28:16 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 16:05:28 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 17:43:47 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int	close_window(t_mlx *mlx)
 {
 	free_game(mlx->game);
+	mlx_destroy_image(mlx->mlx, mlx->img.img);
 	mlx_destroy_window(mlx->mlx, mlx->window);
 	exit(EXIT_SUCCESS);
 }
@@ -23,7 +24,6 @@ int	close_window(t_mlx *mlx)
 int	key_pressed(int key, t_mlx *mlx)
 {
 	mlx_clear_window(mlx->mlx, mlx->window);
-	printf("Key pressed -> %d\n", key);
 	if (key == 124 || key == 2)
 		mlx->img.pos.x += mlx->img.size.x;
 	else if (key == 123 || key == 0)
@@ -39,7 +39,20 @@ int	key_pressed(int key, t_mlx *mlx)
 	return (0);
 }
 
-// int	sprite_animation(t_mlx	*mlx)
-// {
-	
-// }
+int	sprite_animation(t_mlx	*mlx)
+{
+	static int	frame;
+
+	mlx_clear_window(mlx->mlx, mlx->window);
+	frame++;
+	if (frame == ANIMATION_FRAMES)
+		mlx->img.pos.y += 2;
+	else if (frame >= ANIMATION_FRAMES * 2)
+	{
+		mlx->img.pos.y -= 2;
+		frame = 0;
+	}
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img.img,
+							mlx->img.pos.x, mlx->img.pos.y);
+	return (0);
+}

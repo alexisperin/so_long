@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 15:30:54 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/27 17:38:22 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 
 # include <stdio.h> // TO REMOVE !!!
+
+# define ANIMATION_FRAMES 10
 
 typedef struct s_vector
 {
@@ -54,6 +56,7 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*window;
 	t_img	img;
+	t_img	wall;
 	t_game	*game;
 }			t_mlx;
 
@@ -90,5 +93,6 @@ void		play_game(t_game *game);
 // Hooks
 int			close_window(t_mlx *mlx);
 int			key_pressed(int key, t_mlx *mlx);
+int			sprite_animation(t_mlx	*mlx);
 
 #endif
