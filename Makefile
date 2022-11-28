@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/27 16:06:49 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/28 19:17:49 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,14 @@ SRC_FILE	= main.c \
 				
 SRCS_DIR	= srcs
 OBJSDIR		= objs
-INCDIR		= includes ${FT_PRINTF_DIR}/includes ${LIBFT_DIR}
+INCDIR		= includes ${FT_PRINTF_DIR}/includes ${LIBFT_DIR} srcs/mlx_linux
 
 SRCS		= $(addprefix ${SRCS_DIR}/, ${SRC_FILE})
 OBJS		= $(addprefix ${OBJSDIR}/, $(addsuffix .o, $(basename ${SRC_FILE})))
 OBJS_DIR	= $(sort $(dir $(OBJS)))
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 LEAKS		= -fsanitize=address -g
 INCS		= $(foreach d, $(INCDIR), -I$d)
 
@@ -51,6 +51,11 @@ MLX_DIR		= srcs/mlx
 MLX_PATH	= ${MLX_DIR}/libmlx.a
 MLX			= -framework OpenGL -framework AppKit ${MLX_PATH}
 
+# Minilibx Linux
+MLX_DIR_LINUX	= srcs/mlx_linux
+MLX_PATH_LINUX	= ${MLX_DIR_LINUX}/libmlx.a
+MLX_LINUX		= -lmlx -lXext -lX11 -lm -lz ${MLX_PATH_LINUX}
+
 # Rules
 ${OBJSDIR}/%.o: ${SRCS_DIR}/%.c
 			@mkdir -p ${OBJSDIR} ${OBJS_DIR}
@@ -65,10 +70,10 @@ ${NAME}:	${OBJS}
 			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} ${MLX} -o ${NAME}
 
 linux:		${OBJS}
-			# @make -C ${MLX_LINUX_DIR}
+			@make -C ${MLX_DIR_LINUX}
 			@make -C ${LIBFT_DIR}
 			@make -C ${FT_PRINTF_DIR}
-			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} -o ${NAME}
+			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} ${MLX_LINUX} -o ${NAME}
 
 clean:
 			@make clean -C ${MLX_DIR}
