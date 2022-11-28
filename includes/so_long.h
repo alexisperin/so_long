@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 17:38:22 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/28 18:16:29 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <stdio.h> // TO REMOVE !!!
 
+# define CELL_SIZE 32
 # define ANIMATION_FRAMES 10
 
 typedef struct s_vector
@@ -55,12 +56,10 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*window;
-	t_img	img;
-	t_img	wall;
+	t_img	img[6];
 	t_game	*game;
+	int		dir;
 }			t_mlx;
-
-void print_path(t_path *path); // TO REMOVE !!!
 
 // Error
 int			print_error(char *str, int call_perror);

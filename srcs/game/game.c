@@ -6,21 +6,57 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:26:37 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 17:42:06 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/28 18:02:08 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
 
-t_img	new_sprite(void *mlx, char	*file_path)
+static t_img	new_sprite(void *mlx, char	*file_path)
 {
 	t_img	img;
 
 	img.img = mlx_xpm_file_to_image(mlx, file_path, &img.size.x, &img.size.y);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-									&img.line_length, &img.endian);
+			&img.line_length, &img.endian);
 	return (img);
+}
+
+static void	put_image(t_mlx *mlx, int x, int y, int img)
+{
+	mlx->img[img].pos.x = x * CELL_SIZE;
+	mlx->img[img].pos.y = y * CELL_SIZE;
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[img].img,
+		mlx->img[img].pos.x, mlx->img[img].pos.y);
+}
+
+static void	put_items(t_mlx *mlx)
+{
+	char	**map;
+	int		x;
+	int		y;
+
+	map = mlx->game->map;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			put_image(mlx, x, y, 2);
+			if (map[y][x] == 'P')
+				put_image(mlx, x, y, 0);
+			else if (map[y][x] == '1')
+				put_image(mlx, x, y, 3);
+			else if (map[y][x] == 'C')
+				put_image(mlx, x, y, 4);
+			else if (map[y][x] == 'E')
+				put_image(mlx, x, y, 5);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	play_game(t_game *game)
@@ -30,23 +66,20 @@ void	play_game(t_game *game)
 	mlx.mlx = mlx_init();
 	if (!mlx.mlx)
 		return ;
-	mlx.window = mlx_new_window(mlx.mlx, 50 * game->size.x,
-								50 * game->size.y, "so_long");
+	mlx.window = mlx_new_window(mlx.mlx, CELL_SIZE * game->size.x,
+			CELL_SIZE * game->size.y, "so_long");
 	if (!mlx.window)
 		return ;
 	mlx.game = game;
-	mlx.img = new_sprite(mlx.mlx, "sprites/monster.xpm");
-	mlx.img.pos.x = 0;
-	mlx.img.pos.y = 0;
-	mlx.wall = new_sprite(mlx.mlx, "sprites/rock.xpm");
-	mlx.wall.pos.x = 0;
-	mlx.wall.pos.y = 0;
-	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.img.img, mlx.img.pos.x,
-							mlx.img.pos.y);
-	mlx_put_image_to_window(mlx.mlx, mlx.window, mlx.wall.img, mlx.wall.pos.x,
-							mlx.wall.pos.y);
+	mlx.img[0] = new_sprite(mlx.mlx, "sprites/monster_right.xpm");
+	mlx.img[1] = new_sprite(mlx.mlx, "sprites/monster_left.xpm");
+	mlx.img[2] = new_sprite(mlx.mlx, "sprites/grass.xpm");
+	mlx.img[3] = new_sprite(mlx.mlx, "sprites/rock.xpm");
+	mlx.img[4] = new_sprite(mlx.mlx, "sprites/coin.xpm");
+	mlx.img[5] = new_sprite(mlx.mlx, "sprites/tree.xpm");
+	put_items(&mlx);
 	mlx_hook(mlx.window, 17, 0, close_window, &mlx);
 	mlx_key_hook (mlx.window, key_pressed, &mlx);
-	// mlx_loop_hook(mlx.mlx, sprite_animation, &mlx);
+	mlx_loop_hook(mlx.mlx, sprite_animation, &mlx);
 	mlx_loop(mlx.mlx);
 }
