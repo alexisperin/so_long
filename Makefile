@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/28 21:50:01 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/29 17:31:53 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_FILE	= main.c \
 				
 SRCS_DIR	= srcs
 OBJSDIR		= objs
-INCDIR		= includes ${FT_PRINTF_DIR}/includes ${LIBFT_DIR} srcs/mlx_linux
+INCDIR		= includes ${FT_PRINTF_DIR}/includes ${LIBFT_DIR} srcs/mlx
 
 SRCS		= $(addprefix ${SRCS_DIR}/, ${SRC_FILE})
 OBJS		= $(addprefix ${OBJSDIR}/, $(addsuffix .o, $(basename ${SRC_FILE})))
@@ -50,11 +50,6 @@ MLX_DIR		= srcs/mlx
 MLX_PATH	= ${MLX_DIR}/libmlx.a
 MLX			= -framework OpenGL -framework AppKit ${MLX_PATH}
 
-# Minilibx Linux
-MLX_DIR_LINUX	= srcs/mlx_linux
-MLX_PATH_LINUX	= ${MLX_DIR_LINUX}/libmlx.a
-MLX_LINUX		= -lXext -lX11 ${MLX_PATH_LINUX}
-
 # Rules
 ${OBJSDIR}/%.o: ${SRCS_DIR}/%.c
 			@mkdir -p ${OBJSDIR} ${OBJS_DIR}
@@ -67,12 +62,6 @@ ${NAME}:	${OBJS}
 			@make -C ${LIBFT_DIR}
 			@make -C ${FT_PRINTF_DIR}
 			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} ${MLX} -o ${NAME}
-
-linux:		${OBJS}
-			@make -C ${MLX_DIR_LINUX}
-			@make -C ${LIBFT_DIR}
-			@make -C ${FT_PRINTF_DIR}
-			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} ${MLX_LINUX} -o ${NAME}
 
 clean:
 			@make clean -C ${MLX_DIR}
@@ -87,4 +76,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re NAME linux
+.PHONY:		all clean fclean re NAME
