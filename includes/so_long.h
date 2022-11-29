@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/28 18:16:29 by aperin           ###   ########.fr       */
+/*   Updated: 2022/11/28 19:37:01 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <stdio.h> // TO REMOVE !!!
 
+# define NB_SPRITES 6
 # define CELL_SIZE 32
 # define ANIMATION_FRAMES 10
 
@@ -56,7 +57,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*window;
-	t_img	img[6];
+	t_img	img[NB_SPRITES];
 	t_game	*game;
 	int		dir;
 }			t_mlx;

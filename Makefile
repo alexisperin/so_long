@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/11/28 19:17:49 by aperin           ###   ########.fr        #
+#    Updated: 2022/11/28 21:50:01 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ OBJS_DIR	= $(sort $(dir $(OBJS)))
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-LEAKS		= -fsanitize=address -g
 INCS		= $(foreach d, $(INCDIR), -I$d)
 
 # libft
@@ -54,7 +53,7 @@ MLX			= -framework OpenGL -framework AppKit ${MLX_PATH}
 # Minilibx Linux
 MLX_DIR_LINUX	= srcs/mlx_linux
 MLX_PATH_LINUX	= ${MLX_DIR_LINUX}/libmlx.a
-MLX_LINUX		= -lmlx -lXext -lX11 -lm -lz ${MLX_PATH_LINUX}
+MLX_LINUX		= -lXext -lX11 ${MLX_PATH_LINUX}
 
 # Rules
 ${OBJSDIR}/%.o: ${SRCS_DIR}/%.c
