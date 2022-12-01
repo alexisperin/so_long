@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:26:37 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 08:57:17 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:34:52 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,20 @@ static t_img	new_sprite(void *mlx, char	*file_path)
 	return (img);
 }
 
-static void	put_image(t_mlx *mlx, int x, int y, int img)
+void	put_image(t_mlx *mlx, int x, int y, int img)
 {
 	mlx->img[img].pos.x = x * CELL_SIZE;
 	mlx->img[img].pos.y = y * CELL_SIZE;
+	if (img == 4)
+	{
+		mlx->img[img].pos.x += CELL_SIZE / 4;
+		mlx->img[img].pos.y += CELL_SIZE / 4;
+	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[img].img,
 		mlx->img[img].pos.x, mlx->img[img].pos.y);
 }
 
-static void	put_items(t_mlx *mlx)
+void	put_map(t_mlx *mlx)
 {
 	char	**map;
 	int		x;
@@ -71,14 +76,12 @@ static void	put_items(t_mlx *mlx)
 		while (map[y][x])
 		{
 			put_image(mlx, x, y, 2);
-			if (map[y][x] == 'P')
-				put_image(mlx, x, y, 0);
-			else if (map[y][x] == '1')
+			if (map[y][x] == '1')
 				put_image(mlx, x, y, 3);
 			else if (map[y][x] == 'C')
 				put_image(mlx, x, y, 4);
 			else if (map[y][x] == 'E')
-				put_image(mlx, x, y, 5);
+				put_image(mlx, x, y, 5 + (mlx->game->food_left == 0));
 			x++;
 		}
 		y++;
@@ -100,13 +103,15 @@ void	play_game(t_game *game)
 	mlx.dir = 0;
 	mlx.img[0] = new_sprite(mlx.mlx, "sprites/monster_right.xpm");
 	mlx.img[1] = new_sprite(mlx.mlx, "sprites/monster_left.xpm");
-	mlx.img[2] = new_sprite(mlx.mlx, "sprites/grass.xpm");
+	mlx.img[2] = new_sprite(mlx.mlx, "sprites/back.xpm");
 	mlx.img[3] = new_sprite(mlx.mlx, "sprites/rock.xpm");
-	mlx.img[4] = new_sprite(mlx.mlx, "sprites/coin.xpm");
-	mlx.img[5] = new_sprite(mlx.mlx, "sprites/tree.xpm");
+	mlx.img[4] = new_sprite(mlx.mlx, "sprites/gem.xpm");
+	mlx.img[5] = new_sprite(mlx.mlx, "sprites/safe.xpm");
+	mlx.img[6] = new_sprite(mlx.mlx, "sprites/safe_open.xpm");
 	if (protect_images(&mlx))
 		return ;
-	put_items(&mlx);
+	put_map(&mlx);
+	put_image(&mlx, game->player.x, game->player.y, 0);
 	mlx_hook(mlx.window, 17, 0, close_window, &mlx);
 	mlx_key_hook (mlx.window, key_pressed, &mlx);
 	mlx_loop_hook(mlx.mlx, sprite_animation, &mlx);

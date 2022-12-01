@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/28 19:37:01 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:33:57 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 # include <stdio.h> // TO REMOVE !!!
 
-# define NB_SPRITES 6
+# define NB_SPRITES 7
 # define CELL_SIZE 32
-# define ANIMATION_FRAMES 10
+# define ANIMATION_FRAMES 2500
 
 typedef struct s_vector
 {
@@ -94,5 +94,10 @@ void		play_game(t_game *game);
 int			close_window(t_mlx *mlx);
 int			key_pressed(int key, t_mlx *mlx);
 int			sprite_animation(t_mlx	*mlx);
+
+
+
+void	put_map(t_mlx *mlx);
+void	put_image(t_mlx *mlx, int x, int y, int img);
 
 #endif

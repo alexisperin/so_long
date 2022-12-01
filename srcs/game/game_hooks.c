@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:28:16 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 08:53:58 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 09:38:34 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,13 @@ static void	move(t_game *game, int move, int *dir)
 		game->player.x += 1;
 		*dir = 0;
 	}
-	else
-		return ;
 	if (game->map[game->player.y][game->player.x] == 'C')
 	{
-		game->food_left -= 1;
 		game->map[game->player.y][game->player.x] = '0';
+		game->food_left -= 1;
 	}
 	game->score += 1;
 	ft_printf("Number of moves: %d\n", game->score);
-}
-
-static void	put_player(t_mlx *mlx)
-{
-	mlx->img[2].pos = mlx->img[mlx->dir].pos;
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[2].img,
-		mlx->img[2].pos.x, mlx->img[2].pos.y);
-	mlx->img[mlx->dir].pos.x = CELL_SIZE * mlx->game->player.x;
-	mlx->img[mlx->dir].pos.y = CELL_SIZE * mlx->game->player.y;
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[mlx->dir].img,
-		mlx->img[mlx->dir].pos.x, mlx->img[mlx->dir].pos.y);
 }
 
 int	key_pressed(int key, t_mlx *mlx)
@@ -83,7 +70,8 @@ int	key_pressed(int key, t_mlx *mlx)
 		ft_printf("YOU WON !\n");
 		close_window(mlx);
 	}
-	put_player(mlx);
+	put_map(mlx);
+	put_image(mlx, mlx->game->player.x, mlx->game->player.y, mlx->dir);
 	return (0);
 }
 
@@ -91,20 +79,23 @@ int	sprite_animation(t_mlx	*mlx)
 {
 	static int	frame;
 
-	mlx->img[2].pos = mlx->img[0].pos;
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[2].img,
-		mlx->img[2].pos.x, mlx->img[2].pos.y);
 	frame++;
 	if (frame == ANIMATION_FRAMES)
-		mlx->img[0].pos.y += 2;
+	{
+		mlx->img[mlx->dir].pos.x = mlx->game->player.x * CELL_SIZE;
+		mlx->img[mlx->dir].pos.y = (mlx->game->player.y * CELL_SIZE) + 2;
+	}
 	else if (frame == ANIMATION_FRAMES * 2)
 	{
-		mlx->img[0].pos.y -= 2;
+		mlx->img[mlx->dir].pos.x = mlx->game->player.x * CELL_SIZE;
+		mlx->img[mlx->dir].pos.y = mlx->game->player.y * CELL_SIZE;
 		frame = 0;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[5].img,
-		mlx->img[5].pos.x, mlx->img[5].pos.y);
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[0].img,
-		mlx->img[0].pos.x, mlx->img[0].pos.y);
+	else
+		return (0);
+	mlx_clear_window(mlx->mlx, mlx->window);
+	put_map(mlx);
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[mlx->dir].img,
+		mlx->img[mlx->dir].pos.x, mlx->img[mlx->dir].pos.y);
 	return (0);
 }
