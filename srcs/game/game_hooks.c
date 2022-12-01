@@ -6,13 +6,14 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:28:16 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 09:38:34 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 13:44:17 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
 #include "ft_printf.h"
+#include "libft.h"
 
 int	close_window(t_mlx *mlx)
 {
@@ -23,6 +24,7 @@ int	close_window(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->img[3].img);
 	mlx_destroy_image(mlx->mlx, mlx->img[4].img);
 	mlx_destroy_image(mlx->mlx, mlx->img[5].img);
+	mlx_destroy_image(mlx->mlx, mlx->img[6].img);
 	mlx_destroy_window(mlx->mlx, mlx->window);
 	exit(EXIT_SUCCESS);
 }
@@ -43,6 +45,8 @@ static void	move(t_game *game, int move, int *dir)
 		game->player.x += 1;
 		*dir = 0;
 	}
+	else
+		return ;
 	if (game->map[game->player.y][game->player.x] == 'C')
 	{
 		game->map[game->player.y][game->player.x] = '0';
@@ -75,6 +79,24 @@ int	key_pressed(int key, t_mlx *mlx)
 	return (0);
 }
 
+void	put_score(t_mlx *mlx)
+{
+	char	*score;
+	char	*str;
+	int		x;
+	int		y;
+
+	score = ft_itoa(mlx->game->score);
+	str = ft_strjoin("Score: ", score);
+	free(score);
+	if (!str)
+		return ;
+	x = (mlx->game->size.x / 2) * CELL_SIZE - (CELL_SIZE);
+	y = mlx->game->size.y * CELL_SIZE + (CELL_SIZE / 2);
+	mlx_string_put(mlx->mlx, mlx->window, x, y, 1000, str);
+	free(str);
+}
+
 int	sprite_animation(t_mlx	*mlx)
 {
 	static int	frame;
@@ -97,5 +119,6 @@ int	sprite_animation(t_mlx	*mlx)
 	put_map(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[mlx->dir].img,
 		mlx->img[mlx->dir].pos.x, mlx->img[mlx->dir].pos.y);
+	put_score(mlx);
 	return (0);
 }
