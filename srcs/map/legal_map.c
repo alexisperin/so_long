@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:51:12 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 13:12:13 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 14:17:28 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	rectangular_map(t_game *game)
 	int	y;
 
 	y = 1;
-	if (!game->map)
+	if (!game->map || !game->map[0])
 		return (0);
 	game->size.x = ft_strlen(game->map[0]);
 	while (y < game->size.y)

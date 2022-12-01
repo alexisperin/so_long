@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:41:43 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 13:11:20 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 14:23:08 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_game	*free_game(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->size.y)
+	while (game->map && game->map[i])
 	{
 		free(game->map[i]);
 		i++;

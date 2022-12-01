@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:54 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 13:42:26 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 14:17:17 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	game = init_game(av[1]);
 	if (!game)
-		exit(EXIT_FAILURE);\
+		exit(EXIT_FAILURE);
 	play_game(game);
 	free_game(game);
 	exit(EXIT_SUCCESS);
