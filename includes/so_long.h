@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 13:43:07 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 17:29:40 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include <stdlib.h>
 
-# define NB_SPRITES 7
+#include <stdio.h> // TO REMOVE
+
+# define NB_SPRITES 9
 # define CELL_SIZE 32
 # define ANIMATION_FRAMES 2500
 
@@ -30,6 +32,7 @@ typedef struct s_game
 	char		**map;
 	t_vector	size;
 	t_vector	player;
+	t_vector	enemy;
 	int			food_left;
 	int			score;
 }				t_game;
@@ -58,6 +61,7 @@ typedef struct s_mlx
 	t_img	img[NB_SPRITES];
 	t_game	*game;
 	int		dir;
+	int		enemy_dir;
 }			t_mlx;
 
 // Error

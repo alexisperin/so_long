@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:28:16 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 13:44:17 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 17:40:23 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	close_window(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->img[4].img);
 	mlx_destroy_image(mlx->mlx, mlx->img[5].img);
 	mlx_destroy_image(mlx->mlx, mlx->img[6].img);
+	mlx_destroy_image(mlx->mlx, mlx->img[7].img);
 	mlx_destroy_window(mlx->mlx, mlx->window);
 	exit(EXIT_SUCCESS);
 }
@@ -76,6 +77,7 @@ int	key_pressed(int key, t_mlx *mlx)
 	}
 	put_map(mlx);
 	put_image(mlx, mlx->game->player.x, mlx->game->player.y, mlx->dir);
+	put_image(mlx, mlx->game->enemy.x, mlx->game->enemy.y, 7);
 	return (0);
 }
 
@@ -119,6 +121,7 @@ int	sprite_animation(t_mlx	*mlx)
 	put_map(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[mlx->dir].img,
 		mlx->img[mlx->dir].pos.x, mlx->img[mlx->dir].pos.y);
+	put_image(mlx, mlx->game->enemy.x, mlx->game->enemy.y, 7);
 	put_score(mlx);
 	return (0);
 }

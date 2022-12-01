@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:26:37 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 13:54:05 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 17:32:50 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	protect_images(t_mlx *mlx)
 	mlx->img[4] = new_sprite(mlx->mlx, "sprites/gem.xpm");
 	mlx->img[5] = new_sprite(mlx->mlx, "sprites/safe1.xpm");
 	mlx->img[6] = new_sprite(mlx->mlx, "sprites/safe2.xpm");
+	mlx->img[7] = new_sprite(mlx->mlx, "sprites/enemy_right.xpm");
+	mlx->img[8] = new_sprite(mlx->mlx, "sprites/enemy_left.xpm");
 	i = 0;
 	while (i < NB_SPRITES)
 	{
@@ -124,6 +126,7 @@ void	play_game(t_game *game)
 		return ;
 	put_map(&mlx);
 	put_image(&mlx, game->player.x, game->player.y, 0);
+	put_image(&mlx, game->enemy.x, game->enemy.y, 7);
 	mlx_hook(mlx.window, 17, 0, close_window, &mlx);
 	mlx_key_hook (mlx.window, key_pressed, &mlx);
 	mlx_loop_hook(mlx.mlx, sprite_animation, &mlx);

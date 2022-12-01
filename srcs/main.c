@@ -6,11 +6,11 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:54 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 14:17:17 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 17:30:19 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"\
+#include "so_long.h"
 
 int	main(int ac, char **av)
 {

@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:51:12 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 14:17:28 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 17:26:38 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	unknown_items(t_game *game)
 		{
 			if (game->map[y][x] != '1' && game->map[y][x] != '0'
 				&& game->map[y][x] != 'P' && game->map[y][x] != 'E'
-				&& game->map[y][x] != 'C')
+				&& game->map[y][x] != 'C' && game->map[y][x] != 'G')
 				return (1);
 			x++;
 		}

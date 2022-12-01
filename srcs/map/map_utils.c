@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 13:18:12 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 15:44:26 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	set_player(t_game *game)
 			{
 				game->player.x = x;
 				game->player.y = y;
-				return ;
+			}
+			if (game->map[y][x] == 'G')
+			{
+				game->enemy.x = x;
+				game->enemy.y = y;
 			}
 			x++;
 		}
