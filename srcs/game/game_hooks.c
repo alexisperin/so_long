@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:28:16 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/29 17:37:49 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/01 08:53:58 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@ int	close_window(t_mlx *mlx)
 	exit(EXIT_SUCCESS);
 }
 
-static void	move(t_game *game, int move)
+static void	move(t_game *game, int move, int *dir)
 {
-	int	ret;
-
 	if (move == 0 && game->map[game->player.y - 1][game->player.x] != '1')
 		game->player.y -= 1;
 	else if (move == 1 && game->map[game->player.y + 1][game->player.x] != '1')
 		game->player.y += 1;
 	else if (move == 2 && game->map[game->player.y][game->player.x - 1] != '1')
+	{
 		game->player.x -= 1;
+		*dir = 1;
+	}
 	else if (move == 3 && game->map[game->player.y][game->player.x + 1] != '1')
+	{
 		game->player.x += 1;
-		ret = 0;
+		*dir = 0;
+	}
 	else
 		return ;
 	if (game->map[game->player.y][game->player.x] == 'C')
@@ -53,25 +56,25 @@ static void	move(t_game *game, int move)
 
 static void	put_player(t_mlx *mlx)
 {
-	mlx->img[2].pos = mlx->img[0].pos;
+	mlx->img[2].pos = mlx->img[mlx->dir].pos;
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[2].img,
 		mlx->img[2].pos.x, mlx->img[2].pos.y);
-	mlx->img[0].pos.x = CELL_SIZE * mlx->game->player.x;
-	mlx->img[0].pos.y = CELL_SIZE * mlx->game->player.y;
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[0].img,
-		mlx->img[0].pos.x, mlx->img[0].pos.y);
+	mlx->img[mlx->dir].pos.x = CELL_SIZE * mlx->game->player.x;
+	mlx->img[mlx->dir].pos.y = CELL_SIZE * mlx->game->player.y;
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img[mlx->dir].img,
+		mlx->img[mlx->dir].pos.x, mlx->img[mlx->dir].pos.y);
 }
 
 int	key_pressed(int key, t_mlx *mlx)
 {
 	if (key == 126 || key == 13)
-		move(mlx->game, 0);
+		move(mlx->game, 0, &(mlx->dir));
 	else if (key == 125 || key == 1)
-		move(mlx->game, 1);
+		move(mlx->game, 1, &(mlx->dir));
 	else if (key == 123 || key == 0)
-		move(mlx->game, 2);
+		move(mlx->game, 2, &(mlx->dir));
 	else if (key == 124 || key == 2)
-		move(mlx->game, 3);
+		move(mlx->game, 3, &(mlx->dir));
 	else if (key == 53)
 		close_window(mlx);
 	if (mlx->game->map[mlx->game->player.y][mlx->game->player.x] == 'E'
