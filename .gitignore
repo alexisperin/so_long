@@ -2,6 +2,4 @@
 *.o
 *.a
 *.dSYM
-miniLibX_sample
-log
 so_long

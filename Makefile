@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/12/02 13:37:24 by aperin           ###   ########.fr        #
+#    Updated: 2022/12/02 15:18:17 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ ${NAME}:	${OBJS}
 			${CC} ${OBJS} ${LIBFT} ${FT_PRINTF} ${MLX} -o ${NAME}
 
 clean:
-			# @make clean -C ${MLX_DIR}
+			@make clean -C ${MLX_DIR}
 			@make clean -C ${FT_PRINTF_DIR}
 			@make clean -C ${LIBFT_DIR}
 			rm -rf ${OBJSDIR}
