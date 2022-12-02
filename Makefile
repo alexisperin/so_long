@@ -6,7 +6,7 @@
 #    By: aperin <aperin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 15:19:03 by aperin            #+#    #+#              #
-#    Updated: 2022/12/01 09:33:51 by aperin           ###   ########.fr        #
+#    Updated: 2022/12/02 13:37:24 by aperin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRC_FILE	= main.c \
 				path/path.c \
 				path/path_utils.c \
 				game/game.c \
-				game/game_hooks.c
+				game/game_hooks.c \
+				game/sprites.c \
+				game/update.c
 				
 SRCS_DIR	= srcs
 OBJSDIR		= objs
@@ -34,7 +36,7 @@ OBJS		= $(addprefix ${OBJSDIR}/, $(addsuffix .o, $(basename ${SRC_FILE})))
 OBJS_DIR	= $(sort $(dir $(OBJS)))
 
 CC			= gcc
-CFLAGS		= #-Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 INCS		= $(foreach d, $(INCDIR), -I$d)
 
 # libft

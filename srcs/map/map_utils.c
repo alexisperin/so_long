@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:29:49 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 15:44:26 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/02 09:42:13 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	set_player(t_game *game)
 	int	x;
 	int	y;
 
+	game->enemy.x = 0;
+	game->enemy.y = 0;
 	y = 0;
 	while (y < game->size.y)
 	{

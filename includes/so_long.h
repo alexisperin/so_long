@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/01 17:29:40 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/02 13:36:58 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ t_path		*free_path(t_path *path);
 
 // Game
 void		play_game(t_game *game);
+int			load_sprites(t_mlx *mlx);
 
 // Hooks
 int			close_window(t_mlx *mlx);
@@ -101,5 +102,10 @@ int			sprite_animation(t_mlx	*mlx);
 void		put_map(t_mlx *mlx);
 void		put_image(t_mlx *mlx, int x, int y, int img);
 void		put_score(t_mlx *mlx);
+
+// Update game
+void		move_player(t_game *game, int move, int *dir);
+void		move_enemy(t_game *game, int move, int *dir);
+void		update_window(t_mlx *mlx);
 
 #endif
