@@ -6,16 +6,16 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:12:59 by aperin            #+#    #+#             */
-/*   Updated: 2022/11/27 13:17:22 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/02 13:45:45 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static t_path *bfs_algo(char **map, t_path *allowed, t_path *visited)
+static t_path	*bfs_algo(char **map, t_path *allowed, t_path *visited)
 {
-	int		moves[4];
-	int		i;
+	int			moves[4];
+	int			i;
 	t_vector	curr_pos;
 	t_vector	new_pos;
 

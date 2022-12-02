@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:51:12 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/02 09:40:35 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/02 13:46:40 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ int	legal_map(t_game *game)
 	else if (unknown_items(game))
 		return (print_error("Map contains unknown items\n", 0));
 	else if (nb_items(game, 'P') != 1)
-		return (print_error("Map does not have exactly one starting position\n", 0));
+		return (print_error("Map does not have exactly one starting position\n",
+				0));
 	else if (nb_items(game, 'E') != 1)
 		return (print_error("Map does not have exactly one exit\n", 0));
 	else if (nb_items(game, 'C') < 1)
