@@ -6,7 +6,7 @@
 /*   By: aperin <aperin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:41 by aperin            #+#    #+#             */
-/*   Updated: 2022/12/02 13:36:58 by aperin           ###   ########.fr       */
+/*   Updated: 2022/12/02 15:23:01 by aperin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
-
-#include <stdio.h> // TO REMOVE
 
 # define NB_SPRITES 9
 # define CELL_SIZE 32
